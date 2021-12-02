@@ -4,6 +4,7 @@ const expect = chai.expect;
 const Round = require('../src/Round.js');
 const Card = require("../src/Card.js");
 const Deck = require("../src/Deck.js");
+const Game = require('../src/Game.js');
 
 describe('Round', () => {
     let card1, card2, card3, deck, round, game;
@@ -14,7 +15,8 @@ describe('Round', () => {
         card3 = new Card(3, 'What is my favorite TV show?', ['House', 'Breaking Bad', 'Grey\'s Anatomy'], 'Breaking Bad');
         deck = new Deck([card1, card2, card3]);
         round = new Round(deck);
-    });
+        game = new Game();
+    })
 
     it('should be a function', () => {
         expect(Round).to.be.a('function');
@@ -41,12 +43,12 @@ describe('Round', () => {
     })
 
     it('should be able to update currentCard after taking a guess', () => {
-        const updateCard = round.takeTurn('Javascript');
+        round.takeTurn('Javascript');
         expect(round.returnCurrentCard()).to.equal(card2);
     })
 
     it('should be able to update turn count after taking a guess', () => {
-        const updateTurn = round.takeTurn('Python');
+        round.takeTurn('Python');
         expect(round.turns).to.equal(1);
     })
 
@@ -54,19 +56,11 @@ describe('Round', () => {
         expect(round.incorrectGuesses).to.deep.equal([]);
     })
 
-    // it('should be able to add to incorrect guesses', () => {
-    //     const correct = round.takeTurn('Javascript');
-    //     expect(round.incorrectGuesses).to.deep.equal([])
-
-    //     const incorrect = round.takeTurn('Kiba');
-    //     expect(round.incorrectGuesses).to.deep.equal([2]);
-    // })
-
     it('should be able to add to incorrect guesses', () => {
-        const correct = round.takeTurn('JavaScript');
+        round.takeTurn('JavaScript');
         expect(round.incorrectGuesses).to.deep.equal([])
 
-        const incorrect = round.takeTurn('Kiba');
+        round.takeTurn('Kiba');
         expect(round.incorrectGuesses).to.deep.equal([2]);
     })
 
@@ -79,18 +73,18 @@ describe('Round', () => {
     })
 
     it('should be able to calculate percentage of correct answers test', () => {
-        const answer1 = round.takeTurn('JavaScript');
-        const answer2 = round.takeTurn('Kiba');
-        const answer3 = round.takeTurn('Breaking Bad');
+        round.takeTurn('JavaScript');
+        round.takeTurn('Kiba');
+        round.takeTurn('Breaking Bad');
         const correctPercentage = round.calculatePercentCorrect();
 
         expect(correctPercentage).to.equal(67);
     })
 
     it('should return 100 percent if all answers are correct', () => {
-        const answer1 = round.takeTurn('JavaScript');
-        const answer2 = round.takeTurn('Dingo');
-        const answer3 = round.takeTurn('Breaking Bad');
+        round.takeTurn('JavaScript');
+        round.takeTurn('Dingo');
+        round.takeTurn('Breaking Bad');
         const correctPercentage = round.calculatePercentCorrect();
 
         expect(correctPercentage).to.equal(100);
@@ -99,6 +93,13 @@ describe('Round', () => {
     it('should be able to end round', () => {
         const end = round.endRound();
         expect(end).to.equal(`** Round over! ** You answered 100% of the questions correctly!`);
+    })
+
+    it('should time the round', () => {
+        expect(round.startingTime).to.be.undefined;
+        game.start();
+        game.currentRound.endRound();
+        expect(game.currentRound.startTime).to.be.above(0);
     })
 
 })
