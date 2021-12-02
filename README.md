@@ -22,7 +22,7 @@ Ensure you have Node.js installed (Type node -v into your terminal to verify)
 
 In your terminal:
 
-clone: git@github.com:cagallo/flashcards-starter.git
-navigate to the root directory run: node index.js
+clone: `git@github.com:cagallo/flashcards-starter.git`
+navigate to the root directory run: `node index.js`
 
 Project Spec [here](https://frontend.turing.edu/projects/flash-cards.html) 
