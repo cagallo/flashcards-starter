@@ -18,7 +18,7 @@ A game created by: Cesare Gallo
 - Visual Studio Code
 - Mocha
 - Chai 
-- Eslint
+- EsLint
 
 ## Install and Setup 
 
