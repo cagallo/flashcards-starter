@@ -8,7 +8,11 @@ A game created by: Cesare Gallo
   
 ## Demonstration of the Game
 
+![Dec-02-2021 14-17-29](https://user-images.githubusercontent.com/78453792/144504544-b6626fb5-4e26-45c9-a612-f1cda99fd506.gif)
 
+After the user completes their game, the percentage of correct answers and the time in which it took the user to complete the game are listed below the final question/answer: 
+
+<img width="1125" alt="Screen Shot 2021-12-02 at 2 11 19 PM" src="https://user-images.githubusercontent.com/78453792/144504726-fd2d3dff-764e-48f0-917e-6aae36706ca0.png">
 
 
 ## Technologies Used
